@@ -34,7 +34,7 @@ namespace CodyCalculator
             Console.WriteLine("3. Multiplication");
             Console.WriteLine("4. Division");
             Console.WriteLine("5. Quit\n");
-            Console.WriteLine("Enter your option.");
+            Console.WriteLine("Enter your option (number only).");
             string menuOption = Console.ReadLine();
             return Int32.Parse(menuOption);
         }
@@ -55,6 +55,14 @@ namespace CodyCalculator
                 case 4:
                     Division();
                     break;
+                default:
+                    {
+                        Console.WriteLine("I don't understand that command...");
+                        Console.WriteLine("Press 'Enter' to try again.");
+                        Console.ReadLine();
+                        Menu();
+                        break;
+                    }
             }
         }
         static void Addition()
