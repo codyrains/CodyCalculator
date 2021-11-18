@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CodyCalculator
 {
-    class Program
+    class Program : CalculatorExtensions
     {
         static void Main(string[] args)
         {
@@ -35,8 +35,8 @@ namespace CodyCalculator
             Console.WriteLine("4. Division");
             Console.WriteLine("5. Quit\n");
             Console.WriteLine("Enter your option (number only).");
-            string menuOption = Console.ReadLine();
-            return Int32.Parse(menuOption);
+            
+            return GetValidInput();
         }
 
         static void MenuOptionSwitch(int menuOption)
@@ -65,6 +65,9 @@ namespace CodyCalculator
                     }
             }
         }
+
+        
+
         static void Addition()
         {
             InputObject inputObj = new InputObject();
@@ -110,9 +113,9 @@ namespace CodyCalculator
             InputObject inputObject = new InputObject();
 
             Console.Write("Enter first number: ");
-            inputObject.valueOne = Int32.Parse(Console.ReadLine());
+            inputObject.valueOne = GetValidInput();
             Console.Write("Enter second number: ");
-            inputObject.valueTwo = Int32.Parse(Console.ReadLine());
+            inputObject.valueTwo = GetValidInput();
             return inputObject;
         }
     }
