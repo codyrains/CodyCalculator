@@ -47,43 +47,65 @@ namespace CodyCalculator
                     Addition();
                     break;
                 case 2:
+                    Subtraction();
                     break;
                 case 3:
+                    Multiplication();
                     break;
                 case 4:
+                    Division();
                     break;
             }
         }
         static void Addition()
         {
+            InputObject inputObj = new InputObject();
+            inputObj = GetInputs();
 
-            Console.Write("Enter first number: ");
-            Console.ReadLine();
-            Console.Write("Enter second number: ");
-            Console.ReadLine();
+            int result = inputObj.valueOne + inputObj.valueTwo;
+
+            Console.WriteLine(inputObj.resultString(result, "+"));
         }
 
         static void Subtraction()
         {
+            InputObject inputObj = new InputObject();
+            inputObj = GetInputs();
 
+            int result = inputObj.valueOne - inputObj.valueTwo;
+
+            Console.WriteLine(inputObj.resultString(result, "-"));
         }
 
         static void Multiplication()
         {
+            InputObject inputObj = new InputObject();
+            inputObj = GetInputs();
 
+            int result = inputObj.valueOne * inputObj.valueTwo;
+
+            Console.WriteLine(inputObj.resultString(result, "x"));
         }
 
         static void Division()
         {
+            InputObject inputObj = new InputObject();
+            inputObj = GetInputs();
 
+            int result = inputObj.valueOne / inputObj.valueTwo;
+
+            Console.WriteLine(inputObj.resultString(result, "/"));
         }
 
         static InputObject GetInputs()
         {
+            InputObject inputObject = new InputObject();
+
             Console.Write("Enter first number: ");
-            Console.ReadLine();
+            inputObject.valueOne = Int32.Parse(Console.ReadLine());
             Console.Write("Enter second number: ");
-            Console.ReadLine();
+            inputObject.valueTwo = Int32.Parse(Console.ReadLine());
+            return inputObject;
         }
     }
 }

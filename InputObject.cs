@@ -10,5 +10,10 @@ namespace CodyCalculator
     {
         public int valueOne { get; set; }
         public int valueTwo { get; set; }
+
+        public string resultString(int result, string operatorType) 
+        {
+            return valueOne.ToString() + " " + operatorType + " " + valueTwo.ToString() + " = " + result.ToString();
+        }
     }
 }
