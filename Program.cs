@@ -15,7 +15,7 @@ namespace CodyCalculator
             {
                 int menuOption = Menu();
 
-                if(menuOption == 5)
+                if(menuOption == (int)MenuOptionEnum.Quit)
                 {
                     stop = true;
                 }
@@ -23,6 +23,7 @@ namespace CodyCalculator
                 {
                     MenuOptionSwitch(menuOption); 
                 }
+
             }
         }
 
@@ -33,7 +34,8 @@ namespace CodyCalculator
             Console.WriteLine("2. Subtraction");
             Console.WriteLine("3. Multiplication");
             Console.WriteLine("4. Division");
-            Console.WriteLine("5. Quit\n");
+            Console.WriteLine("5. Date and Time");
+            Console.WriteLine("6. Quit\n");
             Console.WriteLine("Enter your option (number only).");
             
             return GetValidInput();
@@ -43,18 +45,22 @@ namespace CodyCalculator
         {
             switch(menuOption)
             {
-                case 1:
+                case (int)MenuOptionEnum.Addition:
                     Addition();
                     break;
-                case 2:
+                case (int)MenuOptionEnum.Subtraction:
                     Subtraction();
                     break;
-                case 3:
+                case (int)MenuOptionEnum.Multiplication:
                     Multiplication();
                     break;
-                case 4:
+                case (int)MenuOptionEnum.Division:
                     Division();
                     break;
+                case (int)MenuOptionEnum.Date:
+                    DaysUntil();
+                    break;
+
                 default:
                     {
                         Console.WriteLine("I don't understand that command...");
@@ -106,6 +112,27 @@ namespace CodyCalculator
             int result = inputObj.valueOne / inputObj.valueTwo;
 
             Console.WriteLine(inputObj.resultString(result, "/"));
+        }
+
+        static void DaysUntil()
+        {
+            DateTime dateTime = new DateTime();
+            Console.WriteLine("Please enter the date (mm/dd/yyyy)");
+            dateTime = GetCurrentDate();
+            var timeSpan = DateTime.Today - dateTime;
+            
+            if(timeSpan.Days > 0)
+            {
+                Console.WriteLine("There have been " + timeSpan.Days + " day(s) since then.");
+            }
+            else if(timeSpan.Days < 0)
+            {
+                Console.WriteLine("There are " + timeSpan.Days*(-1) + " day(s) until then.");
+            }
+            else
+            {
+                Console.WriteLine("That is today's date.");
+            }
         }
 
         static InputObject GetInputs()

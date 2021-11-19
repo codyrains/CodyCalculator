@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CalculatorExtensions.cs" />
+    <Compile Include="MenuOptionEnum.cs" />
     <Compile Include="InputObject.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

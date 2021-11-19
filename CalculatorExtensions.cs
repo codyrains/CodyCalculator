@@ -29,5 +29,31 @@ namespace CodyCalculator
 
             return value;
         }
+
+        public static DateTime GetCurrentDate()
+        {
+            bool stop = false;
+            DateTime value = new DateTime();
+            while (!stop)
+            {
+                string input = Console.ReadLine();
+
+                if (!DateTime.TryParse(input, out value))
+                {
+                    Console.WriteLine("Invalid input. Please enter a date in the format of mm/dd/yyyy");
+                }
+                else
+                {
+                    Console.WriteLine("Is the date " + value.ToShortDateString() +  " correct? (y/n)");
+                    string validation = Console.ReadLine();
+                    if(validation.ToLower() == "y")
+                    {
+                        stop = true;
+                    }
+
+                }
+            }
+            return value;
+        }
     }
 }
