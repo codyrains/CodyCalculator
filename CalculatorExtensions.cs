@@ -50,6 +50,10 @@ namespace CodyCalculator
                     {
                         stop = true;
                     }
+                    else
+                    {
+                        Console.WriteLine("Please enter the correct date (mm/dd/yyyy)");
+                    }
 
                 }
             }
