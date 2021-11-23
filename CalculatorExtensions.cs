@@ -8,7 +8,7 @@ namespace CodyCalculator
 {
     public class CalculatorExtensions
     {
-        public static int GetValidInput()
+        public int GetValidInput()
         {
             bool stop = false;
             int value = 0;
@@ -30,34 +30,15 @@ namespace CodyCalculator
             return value;
         }
 
-        public static DateTime GetCurrentDate()
+        public InputObject GetInputs()
         {
-            bool stop = false;
-            DateTime value = new DateTime();
-            while (!stop)
-            {
-                string input = Console.ReadLine();
+            InputObject inputObject = new InputObject();
 
-                if (!DateTime.TryParse(input, out value))
-                {
-                    Console.WriteLine("Invalid input. Please enter a date in the format of mm/dd/yyyy");
-                }
-                else
-                {
-                    Console.WriteLine("Is the date " + value.ToShortDateString() +  " correct? (y/n)");
-                    string validation = Console.ReadLine();
-                    if(validation.ToLower() == "y")
-                    {
-                        stop = true;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Please enter the correct date (mm/dd/yyyy)");
-                    }
-
-                }
-            }
-            return value;
+            Console.Write("Enter first number: ");
+            inputObject.valueOne = GetValidInput();
+            Console.Write("Enter second number: ");
+            inputObject.valueTwo = GetValidInput();
+            return inputObject;
         }
     }
 }

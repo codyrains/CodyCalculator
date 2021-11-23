@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CodyCalculator
 {
-    class Program : CalculatorExtensions
+    class Program
     {
         static void Main(string[] args)
         {
@@ -23,7 +23,7 @@ namespace CodyCalculator
                 {
                     MenuOptionSwitch(menuOption); 
                 }
-
+                Console.WriteLine("\n");
             }
         }
 
@@ -37,28 +37,32 @@ namespace CodyCalculator
             Console.WriteLine("5. Date and Time");
             Console.WriteLine("6. Quit\n");
             Console.WriteLine("Enter your option (number only).");
-            
-            return GetValidInput();
+
+            var calculator = new Calculator();
+            return calculator.GetValidInput();
         }
 
         static void MenuOptionSwitch(int menuOption)
         {
-            switch(menuOption)
+            Calculator calculator = new Calculator();
+            DateCalculator dateCalculator = new DateCalculator();
+
+            switch (menuOption)
             {
                 case (int)MenuOptionEnum.Addition:
-                    Addition();
+                    calculator.Addition();
                     break;
                 case (int)MenuOptionEnum.Subtraction:
-                    Subtraction();
+                    calculator.Subtraction();
                     break;
                 case (int)MenuOptionEnum.Multiplication:
-                    Multiplication();
+                    calculator.Multiplication();
                     break;
                 case (int)MenuOptionEnum.Division:
-                    Division();
+                    calculator.Division();
                     break;
                 case (int)MenuOptionEnum.Date:
-                    DaysUntil();
+                    dateCalculator.DaysUntil();
                     break;
 
                 default:
@@ -70,80 +74,6 @@ namespace CodyCalculator
                         break;
                     }
             }
-        }
-
-        
-
-        static void Addition()
-        {
-            InputObject inputObj = new InputObject();
-            inputObj = GetInputs();
-
-            int result = inputObj.valueOne + inputObj.valueTwo;
-
-            Console.WriteLine(inputObj.resultString(result, "+"));
-        }
-
-        static void Subtraction()
-        {
-            InputObject inputObj = new InputObject();
-            inputObj = GetInputs();
-
-            int result = inputObj.valueOne - inputObj.valueTwo;
-
-            Console.WriteLine(inputObj.resultString(result, "-"));
-        }
-
-        static void Multiplication()
-        {
-            InputObject inputObj = new InputObject();
-            inputObj = GetInputs();
-
-            int result = inputObj.valueOne * inputObj.valueTwo;
-
-            Console.WriteLine(inputObj.resultString(result, "x"));
-        }
-
-        static void Division()
-        {
-            InputObject inputObj = new InputObject();
-            inputObj = GetInputs();
-
-            int result = inputObj.valueOne / inputObj.valueTwo;
-
-            Console.WriteLine(inputObj.resultString(result, "/"));
-        }
-
-        static void DaysUntil()
-        {
-            DateTime dateTime = new DateTime();
-            Console.WriteLine("Please enter the date (mm/dd/yyyy)");
-            dateTime = GetCurrentDate();
-            var timeSpan = DateTime.Today - dateTime;
-            
-            if(timeSpan.Days > 0)
-            {
-                Console.WriteLine("There have been " + timeSpan.Days + " day(s) since then.");
-            }
-            else if(timeSpan.Days < 0)
-            {
-                Console.WriteLine("There are " + timeSpan.Days*(-1) + " day(s) until then.");
-            }
-            else
-            {
-                Console.WriteLine("That is today's date.");
-            }
-        }
-
-        static InputObject GetInputs()
-        {
-            InputObject inputObject = new InputObject();
-
-            Console.Write("Enter first number: ");
-            inputObject.valueOne = GetValidInput();
-            Console.Write("Enter second number: ");
-            inputObject.valueTwo = GetValidInput();
-            return inputObject;
         }
     }
 }
