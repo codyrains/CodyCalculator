@@ -41,8 +41,15 @@ namespace CodyCalculator
             InputObject inputObj = new InputObject();
             inputObj = GetInputs();
 
-            int result = inputObj.valueOne / inputObj.valueTwo;
-            Console.WriteLine(inputObj.resultString(result, "/"));
+            if (inputObj.valueTwo == 0)
+            {
+                Console.WriteLine("Cannot divide by zero.");
+            }
+            else
+            {
+                int result = inputObj.valueOne / inputObj.valueTwo;
+                Console.WriteLine(inputObj.resultString(result, "/\n"));
+            }
         }
     }
 }
