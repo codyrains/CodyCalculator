@@ -6,11 +6,16 @@ using System.Threading.Tasks;
 
 namespace CodyCalculator
 {
-    class Program
+    public class Program
     {
+        private static Calculator _calculator;
+        private static DateCalculator _dateCalculator;
+
         static void Main(string[] args)
         {
+            Initialize();
             bool stop = false;
+
             while (!stop) 
             {
                 int menuOption = Menu();
@@ -27,6 +32,13 @@ namespace CodyCalculator
             }
         }
 
+        static void Initialize()
+        {
+            Logger logger = new Logger();
+            _calculator = new Calculator(logger);
+            _dateCalculator = new DateCalculator(logger);
+        }
+
         static int Menu()
         {
             Console.WriteLine("Calculator Menu\n");
@@ -38,31 +50,27 @@ namespace CodyCalculator
             Console.WriteLine("6. Quit\n");
             Console.WriteLine("Enter your option (number only).");
 
-            var calculator = new Calculator();
-            return calculator.GetValidInput();
+            return _calculator.GetValidInput();
         }
 
         static void MenuOptionSwitch(int menuOption)
         {
-            Calculator calculator = new Calculator();
-            DateCalculator dateCalculator = new DateCalculator();
-
             switch (menuOption)
             {
                 case (int)MenuOptionEnum.Addition:
-                    calculator.Addition();
+                    _calculator.Addition();
                     break;
                 case (int)MenuOptionEnum.Subtraction:
-                    calculator.Subtraction();
+                    _calculator.Subtraction();
                     break;
                 case (int)MenuOptionEnum.Multiplication:
-                    calculator.Multiplication();
+                    _calculator.Multiplication();
                     break;
                 case (int)MenuOptionEnum.Division:
-                    calculator.Division();
+                    _calculator.Division();
                     break;
                 case (int)MenuOptionEnum.Date:
-                    dateCalculator.DaysUntil();
+                    _dateCalculator.DaysUntil();
                     break;
 
                 default:

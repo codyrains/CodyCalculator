@@ -8,6 +8,8 @@ namespace CodyCalculator
 {
     public class DateCalculator : CalculatorExtensions
     {
+        public DateCalculator(Logger logger) : base(logger) { }
+
         public void DaysUntil()
         {
             DateTime dateTime = new DateTime();
@@ -40,6 +42,7 @@ namespace CodyCalculator
                 if (!DateTime.TryParse(input, out value))
                 {
                     Console.WriteLine("Invalid input. Please enter a date in the format of mm/dd/yyyy");
+                    _logger.Log("Invalid user input: " + input);
                 }
                 else
                 {
@@ -52,6 +55,7 @@ namespace CodyCalculator
                     else
                     {
                         Console.WriteLine("Please enter the correct date (mm/dd/yyyy)");
+                        _logger.Log("Invalid user input: " + input);
                     }
 
                 }

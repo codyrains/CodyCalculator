@@ -8,6 +8,12 @@ namespace CodyCalculator
 {
     public class CalculatorExtensions
     {
+        protected static Logger _logger;
+        public CalculatorExtensions(Logger logger)
+        {
+            _logger = logger;
+        }
+
         public int GetValidInput()
         {
             bool stop = false;
@@ -19,6 +25,7 @@ namespace CodyCalculator
 
                 if (!Int32.TryParse(input, out value))
                 {
+                    _logger.Log("Invalid user input: " + input);
                     Console.WriteLine("Invalid input, please enter an integer.");
                 }
                 else

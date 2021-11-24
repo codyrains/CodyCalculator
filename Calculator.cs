@@ -8,6 +8,8 @@ namespace CodyCalculator
 {
     public class Calculator : CalculatorExtensions
     {
+        public Calculator(Logger logger) : base (logger) { }
+
         public void Addition()
         {
             InputObject inputObj = new InputObject();
@@ -43,7 +45,8 @@ namespace CodyCalculator
 
             if (inputObj.valueTwo == 0)
             {
-                Console.WriteLine("Cannot divide by zero.");
+                Console.WriteLine("Cannot divide by zero. Please re-enter inputs.");
+                Division();
             }
             else
             {
